@@ -1,6 +1,6 @@
 # First-device pilot
 
-Run this on the coordinator device. Do not add Slack or Notion until the local agent completes a real, harmless task.
+Run this on the coordinator device. The pilot uses Git as its only shared durable layer. It does not require a Notion queue or an HTTP relay.
 
 ## 1. Install and verify
 
@@ -43,18 +43,25 @@ hermes config set display.interface tui
 
 Behavioral settings belong in `config.yaml`. Secrets belong in the active Hermes home `.env` or OAuth flow. Never create a repo copy of either.
 
-## 4. Pilot acceptance test
+## 4. Choose the execution path
+
+- Use the **direct DaVinci path** when the Resolve Mac is available. Keep the project, source media, cache, and exports on that Mac; return paths or approved artifact links in the report.
+- Use **Lloyd's local path** for work assigned to the local Slack-connected Flex worker. Slack is the worker's local trigger/return surface, not a replacement for the reviewed Git record.
+- Do not introduce a Notion queue or HTTP relay for the pilot. If either is evaluated later, document the result and security boundary first.
+
+## 5. Pilot acceptance test
 
 Ask Hermes to:
 
 - read this repository;
-- create a task note with acceptance criteria;
-- make a small change in a disposable branch;
+- assign a stable task ID and acceptance criteria;
+- execute a small, harmless task through one of the two paths;
 - run the relevant verification;
-- report files, tests, and blockers.
+- complete `templates/reports/worker-execution-report.md`;
+- have the coordinator review the report and commit only the redacted, useful result.
 
-Record the result in `pilot-log.md` locally (ignored or outside the repo). The pilot passes only if the report is reproducible and no secret or private state entered Git.
+The pilot passes only if the report is reproducible, exact observations are distinguished from interpretation, the artifact is verified, and no secret or private state entered Git. Keep scratch notes and raw logs local or ignored.
 
-## 5. Add the shared board
+## 6. Optional integrations later
 
-Follow `notion-task-board.md` only after the local pilot passes. Use the connected OAuth/MCP flow; never request or read `NOTION_API_KEY`.
+Add Slack or other integrations only when needed and after the local loop passes. The existing Slack setup remains available in `docs/slack.md`. The Notion design is retained as a deferred option in `docs/notion-task-board.md`; it is not part of the pilot.
