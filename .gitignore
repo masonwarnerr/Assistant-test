@@ -1,11 +1,27 @@
-# Secrets and local state
-.env
+# Credentials and live local agent state (never a fleet image)
+.env*
+*.env
 .hermes/
 auth.json
 mcp-tokens/
+state.db*
 sessions/
 logs/
 memory/
+memories/
+profiles/
+browser-profiles/
+slack-manifest.json
+SOUL.md
+USER.md
+MEMORY.md
+.twin-source.json
+.curator_backups/
+.local/
+pilot-log.md
+*.log
+*.blend
+*.blend1
 __pycache__/
 *.pyc
 .DS_Store

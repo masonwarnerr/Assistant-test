@@ -1,32 +1,46 @@
-# Fleet architecture
+# Independent agents and shared local surfaces
 
-## Roles
+## Default topology
 
-| Role | Owns | Does not own |
+```text
+Computer A                         Computer B
+work-only default profile          work-only default profile
+  desktop / CLI / Slack app A         desktop / CLI / Slack app B
+  local skills + memory               local skills + memory
+  local application MCPs              local application MCPs
+  own provider/OAuth credentials      own provider/OAuth credentials
+```
+
+The desktop agent and its Slack identity share one local profile. Each computer remains independent: its own state, unique Slack app/token pair, and OAuth grants. No SSH, shared live memory, or central PC dispatcher is required for local control.
+
+A local profile is not a filesystem sandbox. A shared bot with terminal and desktop tools can exercise the OS account's permissions. Cleaning personal skills removes context, not access to personal files or signed-in browser sessions.
+
+## When additional profiles make sense
+
+Use a named profile for a genuinely independent role or state boundary on the same computer—not merely a different chat surface. Preserve an existing specialist profile if it still owns needed authentication or sessions; do not blindly delete it in a consolidation.
+
+The tested installed Hermes CLI uses one host gateway to serve profiles and refuses ordinary per-profile gateway installation. Use `hermes gateway --help` and `hermes gateway migrate --help` to check the installed version. Historical standalone overrides are compatibility shims, not the new-computer recipe. [Operations](operations.md) describes careful same-machine consolidation.
+
+## Roles are optional specialization
+
+| Role | Work scope | Boundary |
 |---|---|---|
-| Coordinator | intake, prioritization, task board updates, routing, approvals, final delivery | heavy media renders or unattended destructive actions |
-| Resolve workstation | DaVinci Resolve projects, exports, media cache | credentials or shared state copied from another machine |
-| Blender workstation | Blender scenes, renders, simulations | production publishing without coordinator approval |
-| Midjourney bridge | prompt/image research and approved downloads through the available browser surface | unattended account changes or bulk publishing |
+| General local work agent | Local intake, creative tools, verification, delivery | Does not inherit another computer's persona or private accounts |
+| Coordinator | Prioritization, optional board, approvals and handoff | Does not assume it can reach a remote workstation |
+| Resolve specialist | Local projects, media and exports | No unapproved source overwrite or publishing |
+| Blender specialist | Local scenes, simulations and renders | No unapproved changes to accepted assets |
+| Browser/design specialist | Authorized work design and research | No private account or browser-tab access |
 
-A role is a Hermes profile on a machine. Keep each profile's skills, memory, sessions, and OAuth stores local to that machine. Use `hermes -p <profile> chat` for a profile and `hermes profile list` to inspect profiles.
+Use [machine briefs](../templates/machines/) to select a role; keep the profile choice separate from the role label.
 
-## Communication
+## What travels between computers
 
-- Human intake: Coordinator CLI/desktop, then optional Slack gateway.
-- Durable work state: one shared Notion database, with a GitHub link and machine/role fields.
-- Code/config/template state: this Git repository.
-- Cross-machine agent work: prefer Hermes Bot Mode/connected gateways; for always-on peer routing use the documented `hermes peer` flow and protect `API_SERVER_KEY`.
-- Large media: local or approved shared storage; store links and checksums in Notion, not binaries in this repo.
+Travel: source-controlled instructions, reviewed portable skills, templates, and explicit task briefs/artifact links.
 
-## Data flow
+Stay local: `.env`, provider and OAuth stores, memory, sessions, logs, browser profiles, personal preferences, machine caches, and private exports. This repository is not a live state synchronizer. Copying a skill does not connect its service.
 
-1. Coordinator creates or normalizes a Notion task.
-2. Coordinator assigns a role and records an explicit acceptance criterion.
-3. Specialist agent works only in its assigned workspace and reports artifacts, blockers, and next action.
-4. Coordinator verifies the artifact, updates Notion, and publishes or requests revision.
-5. Git changes are committed to a branch and reviewed before merge.
+Optional collaboration uses [documented peer connections](second-device-rollout.md) over private networking with explicit authorization. Do not auto-connect a PC because an old skill mentions it. An optional [Notion board](notion-task-board.md) tracks durable work but is not necessary for a local agent to answer Slack.
 
-## Failure boundaries
+## Completion contract
 
-A Slack outage must not erase task state. A Notion outage must not block local work: keep a temporary local task note and reconcile later. A specialist workstation must not receive coordinator OAuth stores. A bot must not be allowed to recursively answer other bots without explicit mention gating.
+Every work task has scope and acceptance criteria. Return the actual artifact path, tool/command results, verification, and remaining blockers. A model reply, a running process, discovered tools, and a finished deliverable are different levels of evidence. Verify the level requested.

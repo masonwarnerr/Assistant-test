@@ -1,60 +1,61 @@
-# First-device pilot
+# Local agent pilot: one shared profile
 
-Run this on the coordinator device. Do not add Slack or Notion until the local agent completes a real, harmless task.
+## 1. Choose the boundary before creating anything
 
-## 1. Install and verify
+For one independent agent per computer, use that computer's work-only **default profile** for desktop, CLI, model credentials, skills, memory, MCP connections, and Slack. A Slack bot is a messaging identity, not a reason to create another profile. Conversations are separate threads even when persistent memory and tools are shared.
 
-Windows native install (official docs):
+Use a named profile only for a genuinely different role or security/data boundary. Profiles separate agent state, not filesystem or browser permissions. For strong privacy separation, use a dedicated work OS account and browser profile. Read [privacy and separation](privacy-and-separation.md).
 
-```powershell
-iex (irm https://hermes-agent.nousresearch.com/install.ps1)
-```
+On an existing installation, identify the current home, profile, applications, connections, and background services. Do not overwrite existing credentials or merge private material into a public/shared work bot.
 
-Then start the setup flow and health check:
-
-```powershell
-hermes setup
-hermes doctor
-hermes
-```
-
-If using the Nous Portal, the official quick path is `hermes setup --portal`. Choose a provider/model with at least 64K context. Do not paste credentials into this repository.
-
-## 2. Establish a profile boundary
-
-Use the default profile for the pilot. Create specialist profiles only when the first task is verified:
-
-```powershell
+```bash
+hermes --version
 hermes profile list
-hermes profile create coordinator
-hermes -p coordinator chat
+hermes gateway status
+hermes mcp list
+hermes doctor
 ```
 
-If the installed version's profile subcommand differs, run `hermes profile --help`; do not guess flags.
+## 2. Install and configure a working model
 
-## 3. Configure non-secrets safely
+Follow the [current installation instructions](https://hermes-agent.nousresearch.com/docs/getting-started/installation) for the actual OS. Hermes is already installed when these commands work; do not reinstall reflexively.
 
-Use the CLI, not hand-edits to YAML:
+```bash
+hermes model
+```
 
-```powershell
+Enter credentials locally in the wizard. For an ordinary OpenAI API key, use `https://api.openai.com/v1`; choose a model actually available to that key. An attractive picker entry or a working API key does not guarantee access to a particular model. A 404 "model does not exist or you do not have access" is a model/access issue, not a reason to rotate the key.
+
+```bash
+hermes chat --oneshot -Q -q "Do not use tools or edit files. Reply exactly: MODEL_OK"
+```
+
+Pass only when the real output returns the requested token. Record errors honestly.
+
+## 3. Make the repository usable context
+
+Clone this repository into a permanent local project directory, not an expiring scratch folder. Use `AGENTS.md` as the setup brief. Read the relevant runbook before acting. Do not copy a full Hermes home, another machine's private memory, or OAuth token stores.
+
+Place a reviewed work-only identity in the active home's `SOUL.md` (use [the work template](../templates/SOUL.work.md)). Install curated reusable skills into the active home's `skills/`; a clone alone does not install them. Never overwrite a richer installed `hermes-agent` skill with the repository's partial hub copy. Keep work asset indexes local and access-controlled.
+
+Non-secret settings use the CLI:
+
+```bash
 hermes config set terminal.backend local
-hermes config set display.interface tui
+hermes config set security.redact_secrets true
+hermes config set approvals.mode smart
 ```
 
-Behavioral settings belong in `config.yaml`. Secrets belong in the active Hermes home `.env` or OAuth flow. Never create a repo copy of either.
+Set `terminal.cwd` to the actual authorized project path via `hermes config set`; never assume a copied machine path is valid. Provider and Slack credentials stay in the active profile's `.env`; OAuth uses the profile's token store.
 
-## 4. Pilot acceptance test
+## 4. Local acceptance
 
-Ask Hermes to:
+Ask the agent to identify its profile, read this repository's README, and inspect an authorized local work file without modifying it. Verify the actual tool results. A harmless model reply is not proof of file or computer-control capability.
 
-- read this repository;
-- create a task note with acceptance criteria;
-- make a small change in a disposable branch;
-- run the relevant verification;
-- report files, tests, and blockers.
+For application access, follow [creative apps](creative-apps.md), test the actual live read-only tools, and distinguish installed skills, configured server, discovered tools, live app/account access, and a completed artifact.
 
-Record the result in `pilot-log.md` locally (ignored or outside the repo). The pilot passes only if the report is reproducible and no secret or private state entered Git.
+## 5. Add Slack to this same profile
 
-## 5. Add the shared board
+Follow [Slack setup](slack.md). Generate the manifest using the final agent name **before installation**. Configure fresh tokens for this computer in this same profile. Start the host gateway, not a second process for the same bot.
 
-Follow `notion-task-board.md` only after the local pilot passes. Use the connected OAuth/MCP flow; never request or read `NOTION_API_KEY`.
+Only after model, local tools, Slack transport, and a real human Slack turn pass should the agent be called ready. Keep private logs outside Git. Add the [optional task board](notion-task-board.md) or [other machines](second-device-rollout.md) only after this local loop works.
