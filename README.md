@@ -1,41 +1,52 @@
-# Hermes Agent Fleet Bootstrap
+# Independent local Hermes agents
 
-A source-controlled, secret-free runbook for a small Hermes fleet across Mason's machines. It is written to be pasted into a fresh Hermes install as a setup brief.
+A secret-free setup and operations playbook for one local work agent per computer. **Use one work-only Hermes profile for that computer's desktop, CLI, and Slack bot.** Give each computer its own Slack app and token pair. Do not create a second profile merely because you are adding Slack.
 
-## What this repository contains
+## Start here
 
-- [Architecture](docs/architecture.md): machine roles and the simplified pilot communication paths.
-- [Pilot setup](docs/first-device-pilot.md): establish the coordinator, direct DaVinci path, and local Lloyd worker.
-- [Execution reports](docs/execution-reports.md): worker reporting contract and review flow.
-- [Shared learning](docs/shared-learning.md): how verified observations become reusable Git procedures and skills.
-- [Second-device rollout](docs/second-device-rollout.md): add Resolve, Blender, or Midjourney workstations safely.
-- [Slack](docs/slack.md): verified Socket Mode setup using current Hermes commands.
-- [Notion task board](docs/notion-task-board.md): deferred option; not required for the pilot.
-- [Operations](docs/operations.md): Git conventions, lifecycle, security, and troubleshooting.
-- [Machine templates](templates/machines/): coordinator and specialist-machine briefs.
-- [Worker report template](templates/reports/worker-execution-report.md): copy for a reviewed task report.
-- [Skill manifest](SKILL-MANIFEST.md): what is included and what is intentionally excluded.
+1. Read [the replication checklist](docs/replication-checklist.md).
+2. Follow [the local pilot](docs/first-device-pilot.md): profile, model, work context, and a real read-only test.
+3. Configure [Slack](docs/slack.md), including the distinction between app defaults and the installed bot's searchable name.
+4. Connect only installed local applications using [the creative-app guide](docs/creative-apps.md): native Resolve MCP, Blender's live addon, and Figma OAuth.
+5. Review [privacy and separation](docs/privacy-and-separation.md) before opening access to teammates.
+6. Use [operations](docs/operations.md) and the [architecture](docs/architecture.md) for ongoing work. [Notion](docs/notion-task-board.md) and [other-device connections](docs/second-device-rollout.md) are optional, later steps—not prerequisites for a local Slack agent.
 
-## Pilot architecture
+## What the tested setup established
 
-Git is the only shared durable layer. The coordinator uses the direct DaVinci path when a Resolve Mac is available. Lloyd is the local Slack-connected Flex worker for tasks that should run on the Lloyd machine. The pilot requires neither a Notion queue nor an HTTP relay; use local workspaces, Slack where already configured, and committed Git documentation/reports.
+A local Mac's desktop and Slack agent were consolidated onto its default profile, keeping cleaned work skills and persistent memory together. Its old setup gateway was uninstalled and its history retired outside active profiles; an existing app-specific profile was preserved rather than discarding its authentication. Another computer's agent was not contacted or modified.
 
-## Non-negotiables
+Verified outcomes: model inference; Slack bot authentication and Socket Mode reconnection; native Resolve status reporting version 21.1; Blender 5.2.1 LTS with addon 1.8/protocol 13 and live loopback connectivity; Figma work-account authentication and a read of an authorized work node. Tool counts and versions are observations, not requirements or promises about future releases. A full creative task delivered through Slack remains a separate acceptance gate. The repeated Slack avatar upload problem was **not resolved**; it is not documented as a successful fix.
 
-1. Never commit tokens, `.env`, OAuth stores, sessions, raw logs, memory, or private exports.
-2. Put secrets in the active Hermes home `.env`; put non-secret behavior in `config.yaml` via `hermes config set`.
-3. Start with one coordinator and one real task. Add integrations and specialist machines only after the local loop works.
-4. Treat this repository as instructions, reviewed reports, and reusable procedures—not as a synchronization store for live agent state.
-5. Reports must be concise, redacted, and reviewable; do not turn the repository into a transcript or secret-bearing log archive.
+## Fast troubleshooting rules
 
-## Official sources used
+- A missing Slack search identity is not a stopped-gateway problem. Check the installed workspace bot user name.
+- `connections:write` is the app token's Socket Mode permission; reading messages is governed by separate bot OAuth scopes.
+- Blank allowed-user IDs do not mean everyone is allowed, and the home channel is not an access policy.
+- MCP tool discovery does not prove Blender's addon is reachable or Figma can read the intended work file.
+- Copying skills does not copy connections or OAuth, and a repository checkout is not automatically profile memory.
+- Never transplant another machine's Hermes home to create an "independent" agent.
+- Open Slack plus local terminal/desktop access is powerful. Cleaning prompts and personal skills is **not** an OS sandbox.
 
-- Hermes docs: https://hermes-agent.nousresearch.com/docs/
-- Docs index: https://hermes-agent.nousresearch.com/docs/llms.txt
-- Hermes source: https://github.com/NousResearch/hermes-agent
-- Slack setup: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/slack
-- MCP integration: https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp
-- MCP config/OAuth reference: https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference
-- Bot mode and profiles: https://hermes-agent.nousresearch.com/docs/user-guide/bot-mode
+## Included helpers
 
-Commands in this repository are limited to commands verified in those sources or the Hermes source tree at publication time. Re-check the linked docs after upgrading Hermes.
+- [Addon layout repair](scripts/fix_blender_addon_layout.py): dry-run by default; explicit `--apply`; backs up replaced addon code and refuses symlinked paths.
+- [Enable Blender bridge](scripts/enable_blender_bridge.py): run inside Blender; enables the addon, disables prompt/scene telemetry consent, starts the loopback bridge, and saves preferences—not project files.
+
+These helpers do not authenticate services, transfer secrets, or create cloud resources. Close Blender before updating addon code. See the creative-app guide for the order of operations.
+
+```bash
+python3 -m unittest discover -s tests -v
+git diff --check
+```
+
+The unit tests use isolated fixtures; they do not substitute for the live application and Slack acceptance checks.
+
+## Repository boundary
+
+Commit instructions, reviewed reusable skills, templates, and safe helper code only. Never commit `.env`, provider keys, Slack tokens, OAuth stores, personal preferences, memories, sessions, logs, browser profiles, generated Slack manifests, or private work asset registries. [SKILL-MANIFEST.md](SKILL-MANIFEST.md) describes the distributed material. The existing copied Hermes hub is not a complete replacement for the locally installed skill and its references.
+
+Authoritative current references: [Hermes docs](https://hermes-agent.nousresearch.com/docs/), [documentation index](https://hermes-agent.nousresearch.com/docs/llms.txt), and the installed `hermes <command> --help`. When they differ, validate the live command instead of following a stale recipe.
+
+## Simplified fleet pilot
+
+Use the direct DaVinci path when a Resolve Mac is available, and use Lloyd as the local Slack-connected Flex worker for work assigned to Lloyd's machine. GitHub is the only shared durable layer for the pilot. No Notion task queue or HTTP relay is required. See [execution reports](docs/execution-reports.md), [shared learning](docs/shared-learning.md), and the [worker report template](templates/reports/worker-execution-report.md).

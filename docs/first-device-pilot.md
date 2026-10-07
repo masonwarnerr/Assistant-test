@@ -1,67 +1,67 @@
-# First-device pilot
+# Local agent pilot: one shared profile
 
-Run this on the coordinator device. The pilot uses Git as its only shared durable layer. It does not require a Notion queue or an HTTP relay.
+## 1. Choose the boundary before creating anything
 
-## 1. Install and verify
+For one independent agent per computer, use that computer's work-only **default profile** for desktop, CLI, model credentials, skills, memory, MCP connections, and Slack. A Slack bot is a messaging identity, not a reason to create another profile. Conversations are separate threads even when persistent memory and tools are shared.
 
-Windows native install (official docs):
+Use a named profile only for a genuinely different role or security/data boundary. Profiles separate agent state, not filesystem or browser permissions. For strong privacy separation, use a dedicated work OS account and browser profile. Read [privacy and separation](privacy-and-separation.md).
 
-```powershell
-iex (irm https://hermes-agent.nousresearch.com/install.ps1)
-```
+On an existing installation, identify the current home, profile, applications, connections, and background services. Do not overwrite existing credentials or merge private material into a public/shared work bot.
 
-Then start the setup flow and health check:
-
-```powershell
-hermes setup
-hermes doctor
-hermes
-```
-
-If using the Nous Portal, the official quick path is `hermes setup --portal`. Choose a provider/model with at least 64K context. Do not paste credentials into this repository.
-
-## 2. Establish a profile boundary
-
-Use the default profile for the pilot. Create specialist profiles only when the first task is verified:
-
-```powershell
+```bash
+hermes --version
 hermes profile list
-hermes profile create coordinator
-hermes -p coordinator chat
+hermes gateway status
+hermes mcp list
+hermes doctor
 ```
 
-If the installed version's profile subcommand differs, run `hermes profile --help`; do not guess flags.
+## 2. Install and configure a working model
 
-## 3. Configure non-secrets safely
+Follow the [current installation instructions](https://hermes-agent.nousresearch.com/docs/getting-started/installation) for the actual OS. Hermes is already installed when these commands work; do not reinstall reflexively.
 
-Use the CLI, not hand-edits to YAML:
+```bash
+hermes model
+```
 
-```powershell
+Enter credentials locally in the wizard. For an ordinary OpenAI API key, use `https://api.openai.com/v1`; choose a model actually available to that key. An attractive picker entry or a working API key does not guarantee access to a particular model. A 404 "model does not exist or you do not have access" is a model/access issue, not a reason to rotate the key.
+
+```bash
+hermes chat --oneshot -Q -q "Do not use tools or edit files. Reply exactly: MODEL_OK"
+```
+
+Pass only when the real output returns the requested token. Record errors honestly.
+
+## 3. Make the repository usable context
+
+Clone this repository into a permanent local project directory, not an expiring scratch folder. Use `AGENTS.md` as the setup brief. Read the relevant runbook before acting. Do not copy a full Hermes home, another machine's private memory, or OAuth token stores.
+
+Place a reviewed work-only identity in the active home's `SOUL.md` (use [the work template](../templates/SOUL.work.md)). Install curated reusable skills into the active home's `skills/`; a clone alone does not install them. Never overwrite a richer installed `hermes-agent` skill with the repository's partial hub copy. Keep work asset indexes local and access-controlled.
+
+Non-secret settings use the CLI:
+
+```bash
 hermes config set terminal.backend local
-hermes config set display.interface tui
+hermes config set security.redact_secrets true
+hermes config set approvals.mode smart
 ```
 
-Behavioral settings belong in `config.yaml`. Secrets belong in the active Hermes home `.env` or OAuth flow. Never create a repo copy of either.
+Set `terminal.cwd` to the actual authorized project path via `hermes config set`; never assume a copied machine path is valid. Provider and Slack credentials stay in the active profile's `.env`; OAuth uses the profile's token store.
 
-## 4. Choose the execution path
+## 4. Local acceptance
 
-- Use the **direct DaVinci path** when the Resolve Mac is available. Keep the project, source media, cache, and exports on that Mac; return paths or approved artifact links in the report.
-- Use **Lloyd's local path** for work assigned to the local Slack-connected Flex worker. Slack is the worker's local trigger/return surface, not a replacement for the reviewed Git record.
-- Do not introduce a Notion queue or HTTP relay for the pilot. If either is evaluated later, document the result and security boundary first.
+Ask the agent to identify its profile, read this repository's README, and inspect an authorized local work file without modifying it. Verify the actual tool results. A harmless model reply is not proof of file or computer-control capability.
 
-## 5. Pilot acceptance test
+For application access, follow [creative apps](creative-apps.md), test the actual live read-only tools, and distinguish installed skills, configured server, discovered tools, live app/account access, and a completed artifact.
 
-Ask Hermes to:
+## 5. Add Slack to this same profile
 
-- read this repository;
-- assign a stable task ID and acceptance criteria;
-- execute a small, harmless task through one of the two paths;
-- run the relevant verification;
-- complete `templates/reports/worker-execution-report.md`;
-- have the coordinator review the report and commit only the redacted, useful result.
+Follow [Slack setup](slack.md). Generate the manifest using the final agent name **before installation**. Configure fresh tokens for this computer in this same profile. Start the host gateway, not a second process for the same bot.
 
-The pilot passes only if the report is reproducible, exact observations are distinguished from interpretation, the artifact is verified, and no secret or private state entered Git. Keep scratch notes and raw logs local or ignored.
+Only after model, local tools, Slack transport, and a real human Slack turn pass should the agent be called ready. Keep private logs outside Git. Add the [optional task board](notion-task-board.md) or [other machines](second-device-rollout.md) only after this local loop works.
 
-## 6. Optional integrations later
+## 6. Fleet pilot execution paths
 
-Add Slack or other integrations only when needed and after the local loop passes. The existing Slack setup remains available in `docs/slack.md`. The Notion design is retained as a deferred option in `docs/notion-task-board.md`; it is not part of the pilot.
+Use the direct DaVinci path when the Resolve Mac is available. Otherwise, assign suitable local work to Lloyd's Slack-connected Flex worker. GitHub is the only shared durable layer: no Notion queue or HTTP relay is required for this pilot.
+
+For every routed task, assign a stable task ID and complete the [worker execution-report template](../templates/reports/worker-execution-report.md). The coordinator must verify the artifact and exact observations before committing a concise, redacted report or promoting a lesson.

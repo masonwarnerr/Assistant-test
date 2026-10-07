@@ -1,24 +1,18 @@
-# Included skill manifest
+# Distributed instructions and helpers
 
-## Copied from the Hermes workspace
+## Included
 
-- `skills/hermes-agent/SKILL.md` — safe, general Hermes operating guidance and official documentation links. Copied without profiles, references containing local state, credentials, or session data.
-
-## Repository runbook documents
-
-- `docs/architecture.md`
-- `docs/first-device-pilot.md`
-- `docs/second-device-rollout.md`
-- `docs/slack.md`
-- `docs/notion-task-board.md`
-- `docs/operations.md`
-- `templates/machines/coordinator.md`
-- `templates/machines/resolve.md`
-- `templates/machines/blender.md`
-- `templates/machines/midjourney.md`
+- `AGENTS.md`: setup brief for a fresh local agent.
+- `docs/`: local pilot, per-machine topology, exact Slack setup/naming, privacy cleanup, creative apps, acceptance gates, and troubleshooting.
+- `templates/SOUL.work.md`: work-only identity example, not a live memory export.
+- `templates/machines/`: optional role briefs. The default replication model is one shared work profile per computer, not one profile per surface.
+- `scripts/fix_blender_addon_layout.py`: explicit-apply addon layout normalization with code backup and dry-run.
+- `scripts/enable_blender_bridge.py`: run inside Blender; enables the local bridge and saves preferences, not project files.
+- `tests/test_blender_helpers.py`: isolated fixture tests, not proof of live application readiness.
+- `skills/hermes-agent/SKILL.md`: the original generic hub copy. Linked reference files from the installed skill are intentionally not distributed; consult official docs rather than assuming those files exist. Do not overwrite a complete locally installed Hermes skill with this partial copy.
 
 ## Intentionally excluded
 
-No `.env`, credentials, OAuth stores, `auth.json`, `mcp-tokens`, sessions, logs, memory, browser profiles, private data, or unrelated skill tree is distributed. Vendor-specific creative-app credentials and machine paths stay on the target machine.
+No live profile/config, credentials, OAuth stores, browser accounts, memories, sessions, logs, personal information, private screenshots/media, full machine-specific skill trees, or private Figma file registries are distributed. Review any new skill before adding it to Git. A skill supplies operational knowledge, not installed software or service authorization.
 
-The copied skill is not a replacement for current Hermes docs. Re-check https://hermes-agent.nousresearch.com/docs/llms.txt after upgrades.
+Install the relevant reviewed work skills into the selected computer's active Hermes home separately. Keep service credentials and work asset mappings local. Read the current installed CLI/help and official docs when versioned instructions differ.
