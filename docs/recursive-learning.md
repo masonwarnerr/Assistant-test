@@ -40,7 +40,7 @@ Overnight, local time `America/Los_Angeles`, between 02:00 and 04:00. Slots are 
 | Slot (PT) | Owner |
 |---|---|
 | 02:15 | masonpc |
-| 02:30 | next agent |
+| 02:30 | davinci |
 | 02:45 | next |
 | 03:00 | next |
 | 03:15 | next |
