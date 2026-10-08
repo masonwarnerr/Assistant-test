@@ -9,6 +9,7 @@
 - `scripts/fix_blender_addon_layout.py`: explicit-apply addon layout normalization with code backup and dry-run.
 - `scripts/enable_blender_bridge.py`: run inside Blender; enables the local bridge and saves preferences, not project files.
 - `tests/test_blender_helpers.py`: isolated fixture tests, not proof of live application readiness.
+- `skills/agent-learning-sync/SKILL.md`: overnight pull, own-inbox write, push. Install into the active profile. The contract is `docs/recursive-learning.md`.
 - `skills/hermes-agent/SKILL.md`: the original generic hub copy. Linked reference files from the installed skill are intentionally not distributed; consult official docs rather than assuming those files exist. Do not overwrite a complete locally installed Hermes skill with this partial copy.
 
 ## Intentionally excluded

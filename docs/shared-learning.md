@@ -2,6 +2,8 @@
 
 Git is the shared durable layer for verified learning. A worker does not directly change shared skills based on an unreviewed observation.
 
+The overnight loop (what to store, who writes which files, when to pull and push) is [recursive learning](recursive-learning.md). That pass writes `inbox/<agent-id>/` and may add a new `lessons/<slug>.md`. It still does not rewrite shared skills from a single unreviewed note.
+
 ## Promotion flow
 
 1. Worker records a candidate in the execution report's **Reusable lessons** field, with the exact observation that supports it.

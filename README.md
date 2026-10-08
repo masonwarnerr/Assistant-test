@@ -49,4 +49,4 @@ Authoritative current references: [Hermes docs](https://hermes-agent.nousresearc
 
 ## Simplified fleet pilot
 
-Use the direct DaVinci path when a Resolve Mac is available, and use Lloyd as the local Slack-connected Flex worker for work assigned to Lloyd's machine. GitHub is the only shared durable layer for the pilot. No Notion task queue or HTTP relay is required. See [execution reports](docs/execution-reports.md), [shared learning](docs/shared-learning.md), and the [worker report template](templates/reports/worker-execution-report.md).
+Use the direct DaVinci path when a Resolve Mac is available, and use Lloyd as the local Slack-connected Flex worker for work assigned to Lloyd's machine. GitHub is the only shared durable layer for the pilot. No Notion task queue or HTTP relay is required. See [execution reports](docs/execution-reports.md), [shared learning](docs/shared-learning.md), [recursive learning](docs/recursive-learning.md), and the [worker report template](templates/reports/worker-execution-report.md).
