@@ -8,6 +8,6 @@ Repo: C:/Users/mason/Assistant-test-bootstrap
 Remote: https://github.com/masonwarnerr/Assistant-test.git
 Branch: main
 
-Scan roughly the last working day in the mason Hermes profile (skills under the profile home, especially slash-davinci-edit, slash-ae-product, slash-product-lookdev, slash-ui-assemble-intro, slash-metal-card). Use session_search for corrections from that day. Yesterday if the pass runs after midnight.
+Scan the last working day for corrections Mason gave this face. Yesterday if the pass runs after midnight. Do not promote Resolve, Adobe Podcast, After Effects, or Blender procedures from the local skill. Those specifics belong to the worker that ran the job. If that worker has not written them under its own inbox, record `worker report missing` and do not invent the steps.
 
 Pull before writing. Commit and push only if you added a reusable learning that is not already in lessons/ or a prior inbox file. If nothing qualifies, do not commit. Final reply is one line: either `pushed <commit>` or `no change`.

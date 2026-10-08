@@ -29,7 +29,7 @@ Don't use for: one-off chat answers, secrets, personal admin, or dispatching a R
 3. Read `lessons/` and every `inbox/*/INDEX.md`. Done when you can name what is already stored.
 4. Scan the last working day in the local profile skills and sessions. Done when each candidate is either kept or dropped in writing.
 5. If nothing new qualifies, stop. No commit. Done when the reply is `no change`.
-6. Write only `inbox/<agent-id>/YYYY-MM-DD.md` and that agent's `INDEX.md`. Promote a **new** `lessons/<slug>.md` only for a repeated correction or a procedure already proven in a local skill. Done when no other agent's path is staged.
+6. Write only `inbox/<agent-id>/YYYY-MM-DD.md` and that agent's `INDEX.md`. Promote a **new** `lessons/<slug>.md` only for a repeated correction, or for steps the worker that ran the job wrote itself. masonpc must not promote Resolve, Adobe, AE, or Blender procedures from its local skill. If the worker file is missing, write `worker report missing` and stop. Done when no other agent's path is staged.
 7. Commit `learn: <agent-id> <date>`, `git pull --rebase`, `git push`. One rebase retry. No force-push. Done when `git status` is clean and the commit is on origin.
 
 ## Hard stops
@@ -38,6 +38,7 @@ Don't use for: one-off chat answers, secrets, personal admin, or dispatching a R
 - No tokens, addresses, Tailscale IPs, or raw transcripts in the repo.
 - Do not edit another agent's inbox to "clean it up."
 - A clone is not a skill install. Copy this skill into the active profile.
+- masonpc does not invent DaVinci or AE specifics. The worker on that machine writes them.
 
 ## Verification
 

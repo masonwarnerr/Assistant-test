@@ -1,8 +1,9 @@
 # Grade ping comes after the enhanced audio is synced
 
+Status: intent from Mason, 2026-10-07. Worker report missing. Do not treat the steps below as verified Mac procedure until the DaVinci agent writes them.
+
 - Scope: Sit-downs and shortform where Mason grades by hand.
-- Date: 2026-10-07
-- Source: TOP3 Shoot 2. He corrected the timing.
+- Source: Mason corrected the timing. masonpc did not ask the worker.
 
 Waveform-sync first. Camera audio muted. Then ping him so he can alter the PowerGrade. Status first line is `GRADE_READY`. Leave Resolve on the new project and stop.
 

@@ -1,8 +1,9 @@
 # Adobe Podcast enhance, end to end
 
+Status: worker report missing. Do not follow this as verified Mac procedure. masonpc copied it from the local skill and did not ask the DaVinci worker. The worker must replace this file with what actually worked.
+
 - Scope: Dialogue enhance on the DaVinci Mac before a Resolve sync.
-- Date: 2026-10-08 (procedure already in local skill; promoted so other agents stop relearning it)
-- Source: Mason, repeated. Local skill `slash-davinci-edit` and `references/adobe-podcast-picker.md`.
+- Source: local skill on masonpc. Not a worker write-up.
 
 Chrome on that Mac is already the agent browser. Use the standing chrome-adobe profile on debug port 9223 with remote-allow-origins set. Do not quit it after a working login. Do not ask Mason to click Open.
 

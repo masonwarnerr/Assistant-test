@@ -53,10 +53,20 @@ Order inside a run:
 2. Read `lessons/` and every `inbox/*/INDEX.md`. Do not re-file a lesson that is already there.
 3. Scan the local profile's last working day: skills that changed, session corrections, revision notes. Cron sessions do not see the daytime chat, so the prompt has to point at the profile skills and session store.
 4. Write `inbox/<agent-id>/YYYY-MM-DD.md` only if there is at least one reusable learning. Update that agent's `INDEX.md`.
-5. Promote to a new `lessons/<slug>.md` only when the same correction already showed up more than once, or it is already a proven step in a local skill. One-off notes stay in the inbox file.
+5. Promote to a new `lessons/<slug>.md` only when the same correction already showed up more than once, or the worker that did the work wrote the steps. A local skill on masonpc is not a worker report. One-off notes stay in the inbox file.
 6. Commit only those new files. Message: `learn: <agent-id> <YYYY-MM-DD>`.
 7. `git pull --rebase`, then `git push`. If push rejects, rebase once and push once more. Then stop.
 8. If nothing new qualified, do not commit and do not push.
+
+## Who owns the specifics
+
+masonpc is the face. It dispatches Resolve, Adobe Podcast, After Effects, and Blender to the computer that owns the app. It does not have the worker's context.
+
+The worker that ran the job writes the deep specifics: which project, which MCP call, which node, what failed, what check proved it. That goes in that worker's own `inbox/<worker-id>/`, or in a reviewed execution report. masonpc does not interview itself and fill that in from a local skill summary.
+
+masonpc may record a correction Mason said, labeled `source: mason`, with the intent only. It must not promote a device procedure to `lessons/` until the worker file exists and the steps came from that file. If the worker has not written it, the inbox note says `worker report missing` and stops there.
+
+Agents that live on the editing machine write their own pass. They already have the context. They do not wait for masonpc to reconstruct it.
 
 ## What qualifies
 

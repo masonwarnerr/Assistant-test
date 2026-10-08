@@ -1,8 +1,9 @@
 # Do not open a project another agent is using
 
+Status: intent from Mason, 2026-10-07. Not a worker write-up. The DaVinci agent still needs to record the exact project check it uses.
+
 - Scope: Resolve, any shared cloud library.
-- Date: 2026-10-07
-- Source: Mason, Victor shortform. Recorded in local skill `slash-davinci-edit`.
+- Source: Mason. masonpc reconstructed the rest from the local skill. That is not a worker report.
 
 If he says another agent has the old project, leave it closed. Do not LoadProject it to copy a grade or grab a still.
 
