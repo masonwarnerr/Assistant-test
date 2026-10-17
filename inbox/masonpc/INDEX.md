@@ -5,3 +5,4 @@
 - 2026-10-10: Oct 9 morning corrections. Case-study B-roll is an intercut around 60-70 percent, not a blanket cover. Keep the earlier coverage cut in the same overview for comparison. No promotions. worker report missing.
 - 2026-10-14: Oct 13 corrections. Tighten clip heads, shorter higher captions, remove every punch-in once rejected, keep the bridge line, and do not resume a paused job. No promotions. Worker steps already in davinci and lloyd.
 - 2026-10-15: Oct 14 corrections. Do not clip the end of a spoken word, long cuts keep the short cut's hook, and a "final" cut still uses the next version number. No promotions. worker report missing.
+- 2026-10-17: Missed Oct 15 correction (Oct 16 pass failed). Shot exports must not open on the previous shot's last frame, and a multi-shot span is not one clip. No promotions. worker report missing. Oct 16 had no daytime sessions.
