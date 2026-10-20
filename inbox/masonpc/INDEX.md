@@ -7,3 +7,4 @@
 - 2026-10-15: Oct 14 corrections. Do not clip the end of a spoken word, long cuts keep the short cut's hook, and a "final" cut still uses the next version number. No promotions. worker report missing.
 - 2026-10-17: Missed Oct 15 correction (Oct 16 pass failed). Shot exports must not open on the previous shot's last frame, and a multi-shot span is not one clip. No promotions. worker report missing. Oct 16 had no daytime sessions.
 - 2026-10-19: Oct 18 corrections. Prove the project is unlocked before Mason grades and stay out. Draft reviews are 1080p H.264, one deliverable at a time, back on the shoot exports folder. Cycle multi-cam inside a question. No promotions. worker report missing.
+- 2026-10-20: Oct 19 corrections. Short-form must match the accepted shorts: real vertical crop, defined captions, existing grade, every remaining clip, rejected files removed. No promotions. worker report missing.
