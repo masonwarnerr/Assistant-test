@@ -9,3 +9,4 @@
 - 2026-10-19: Oct 18 corrections. Prove the project is unlocked before Mason grades and stay out. Draft reviews are 1080p H.264, one deliverable at a time, back on the shoot exports folder. Cycle multi-cam inside a question. No promotions. worker report missing.
 - 2026-10-20: Oct 19 corrections. Short-form must match the accepted shorts: real vertical crop, defined captions, existing grade, every remaining clip, rejected files removed. No promotions. worker report missing.
 - 2026-10-21: Oct 20 corrections. Stage wides stay locked on the speaker, captions are per clip, copy his grade and cut after the enhanced resync, shorts need a hook or context, filler cuts still missed ums and clipped words. No promotions. worker report missing.
+- 2026-10-23: Oct 22 correction. Editorial still prompts do not invent people when the brief is a theme or an object. No promotions.
