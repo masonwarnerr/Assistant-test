@@ -1,5 +1,6 @@
 # masonpc inbox
 
+- 2026-11-20: Nov 19 corrections. Ads and one-pagers do not share a skill. A vertical-center fix must not move X. Deliver in the thread, and a color swap is not a rebuild. Figma work is one page link in Twin Workspace. An Aspect column is a share link. Promoted the skill-split rule. worker report missing for the overlay shift.
 - 2026-11-19: Nov 18 corrections. Handoff pages are written to the recipient, not as notes to Mason, and child pages are links. File sends go through Aspect. A-cam overlays are shifted in Y, not rebuilt. Promoted the handoff-doc rule and the Aspect handoff rule. worker report missing for the overlay shift.
 - 2026-10-08: bootstrap pass for 2026-10-06 through 2026-10-08, plus standing Victor dialogue cleanup.
 - 2026-10-09: Oct 8 corrections. Disabled A/B on demos, release the project, main-timeline grade, Aspect relink or delete, case-study B-roll treatment. No promotions. worker report missing.
