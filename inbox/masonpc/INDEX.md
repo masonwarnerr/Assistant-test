@@ -1,5 +1,6 @@
 # masonpc inbox
 
+- 2026-11-23: Missed Nov 20 through Nov 22. Resolve right-align does not prove the pre-baked overlay text is right-aligned. The Nov 12 fintech-not-Atomic T-bill line is superseded: use the Atomic disclosure, and only after he confirms the rate versus no-yield text. No promotions. worker report missing for the bake.
 - 2026-11-20: Nov 19 corrections. Ads and one-pagers do not share a skill. A vertical-center fix must not move X. Deliver in the thread, and a color swap is not a rebuild. Figma work is one page link in Twin Workspace. An Aspect column is a share link. Promoted the skill-split rule. worker report missing for the overlay shift.
 - 2026-11-19: Nov 18 corrections. Handoff pages are written to the recipient, not as notes to Mason, and child pages are links. File sends go through Aspect. A-cam overlays are shifted in Y, not rebuilt. Promoted the handoff-doc rule and the Aspect handoff rule. worker report missing for the overlay shift.
 - 2026-10-08: bootstrap pass for 2026-10-06 through 2026-10-08, plus standing Victor dialogue cleanup.
